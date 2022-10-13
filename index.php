@@ -3,7 +3,9 @@ require_once 'config/config.php';
 require_once 'modules/hg-api.php';
 
 $hg = new HG_API(HG_API_KEY);
-$dolar = $hg->dolar_quatation();
+$dolar = $hg->dolar_quotation();
+$euro = $hg->euro_quotation();
+
 // var_dump($dolar['buy']);
 
 // if ($hg->is_error() == false) {
@@ -37,8 +39,12 @@ $dolar = $hg->dolar_quatation();
                 <?php else: ?>
                 <p>USD: <span class="badge bg-danger">Serviços indisponíveis</span></p>
                 <?php endif ?>
+                <?php if ($hg->is_error() == false): ?>
+                <p>EURO: <span class="badge bg-primary"> <?php echo ($euro['buy']) ?> </span></p>
+                <?php else: ?>
+                <p>EURO: <span class="badge bg-danger">Serviços indisponíveis</span></p>
+                <?php endif ?>  
             </div>
-            
         </div>
     </div>
 

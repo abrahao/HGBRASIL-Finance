@@ -27,7 +27,7 @@ class HG_API{
     function is_error(){
         return $this->error;
     }
-    function dolar_quatation(){
+    function dolar_quOtation(){
         $data = $this->request('finance/quotations');
 
         if(!empty($data) && is_array($data['results']['currencies']['USD'])){
@@ -38,4 +38,17 @@ class HG_API{
             return false;
         }
     }
+
+    function euro_quOtation(){
+        $data = $this->request('finance/quotations');
+
+        if(!empty($data) && is_array($data['results']['currencies']['USD'])){
+            $this->error = false;
+            return $data['results']['currencies']['EUR'];
+        }else {
+            $this->error = true;
+            return false;
+        }
+    }
+
 }
